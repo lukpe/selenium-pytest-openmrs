@@ -24,6 +24,7 @@ def setup(request):
 
     driver.maximize_window()
     driver.get(TestBase.get_config('test', 'url'))
+    driver.delete_all_cookies()
     wait = WebDriverWait(driver, TestBase.get_config('driver', 'wait'))
     request.cls.driver = driver
     request.cls.wait = wait

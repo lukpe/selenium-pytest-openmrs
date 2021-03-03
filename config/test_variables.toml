@@ -1,5 +1,5 @@
 [test]
-url = 'https://duckduckgo.com'
+url = 'http://localhost:3000'
 
 [driver]
 default = 'chrome'
