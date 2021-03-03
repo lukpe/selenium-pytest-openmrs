@@ -1,0 +1,6 @@
+[test]
+url = 'https://duckduckgo.com'
+
+[driver]
+default = 'chrome'
+wait = 10
