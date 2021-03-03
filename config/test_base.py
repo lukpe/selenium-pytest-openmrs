@@ -20,8 +20,9 @@ class TestBase:
         # file handler object
         d = datetime.datetime.now()
         date = str(d.year) + str(d.month) + str(d.day)
-        file_handler = logging.FileHandler(filename="..\\logs\\logfile_" + date + ".log", mode="a", encoding="UTF-8")
-        file_format = logging.Formatter("%(asctime)s %(name)-30s %(levelname)-10s %(message)s")
+        file_handler = logging.FileHandler(filename=f'{ROOT_DIR}\\..\\logs\\logfile_{date}.log', mode='a',
+                                           encoding='UTF-8')
+        file_format = logging.Formatter('%(asctime)s %(name)-30s %(levelname)-10s %(message)s')
         file_handler.setFormatter(file_format)
         logger.addHandler(file_handler)
         logger.setLevel(logging.INFO)
