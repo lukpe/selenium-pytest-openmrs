@@ -5,8 +5,6 @@ from webdrivermanager import ChromeDriverManager, GeckoDriverManager
 
 from config.test_base import TestBase
 
-driver = None
-
 
 def pytest_addoption(parser):
     default = TestBase.get_config('driver', 'default')
@@ -15,7 +13,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='class')
 def setup(request):
-    global driver
+    driver = None
     browser = request.config.getoption('browser')
     if browser == 'chrome':
         ChromeDriverManager().download_and_install()
