@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from webdrivermanager import ChromeDriverManager, GeckoDriverManager
 
-from config.test_base import TestBase
+from utils.test_base import TestBase
 
 
 def pytest_addoption(parser):
