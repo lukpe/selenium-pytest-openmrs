@@ -26,7 +26,6 @@ class RegisterPatientPage(Page):
         self.data = PatientData.get_data()
 
     def fill_patient_name(self):
-        self.data = PatientData.get_data()
         self.set_element_text(*self.given_name, value=self.data['first_name'])
         self.set_element_text(*self.family_name, value=self.data['last_name'])
         self.clk_element(*self.next_button)
@@ -56,7 +55,8 @@ class RegisterPatientPage(Page):
     def fill_patient_relatives(self, number):
         relatives = []
         for i in range(number):
-            relationship_type = (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[1]//select[1]')
+            relationship_type = \
+                (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[1]//select[1]')
             self.wait_visibility(*relationship_type)
             self.select_option_random(*relationship_type)
             selection = self.get_selected(*relationship_type)
