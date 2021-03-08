@@ -23,38 +23,48 @@ class RegisterPatientPage(Page):
 
     def __init__(self, driver):
         Page.__init__(self, driver)
+        self.data = PatientData.get_data()
 
-    def fill_patient_data(self):
-        data = PatientData.get_data()
-        self.set_element_text(*self.given_name, value=data['first_name'])
-        self.set_element_text(*self.family_name, value=data['last_name'])
+    def fill_patient_name(self):
+        self.data = PatientData.get_data()
+        self.set_element_text(*self.given_name, value=self.data['first_name'])
+        self.set_element_text(*self.family_name, value=self.data['last_name'])
         self.clk_element(*self.next_button)
 
-        self.select_option_by_text(*self.gender_field, option='Female')
+    def fill_patient_gender(self, gender):
+        self.select_option_by_text(*self.gender_field, option=gender)
         self.clk_element(*self.next_button)
-        birth_date = data['birth_date']
+
+    def fill_patient_birthdate(self):
+        birth_date = self.data['birth_date']
         self.set_element_text(*self.birth_day, value=birth_date.day)
         self.select_option_by_text(*self.birth_month, option=calendar.month_name[birth_date.month])
         self.set_element_text(*self.birth_year, value=birth_date.year)
         self.clk_element(*self.next_button)
 
-        self.set_element_text(*self.address1, value=data['addr_street'])
-        self.set_element_text(*self.city, value=data['addr_city'])
-        self.set_element_text(*self.country, value=data['addr_country'])
-        self.set_element_text(*self.postal_code, value=data['addr_postal'])
+    def fill_patient_address(self):
+        self.set_element_text(*self.address1, value=self.data['addr_street'])
+        self.set_element_text(*self.city, value=self.data['addr_city'])
+        self.set_element_text(*self.country, value=self.data['addr_country'])
+        self.set_element_text(*self.postal_code, value=self.data['addr_postal'])
         self.clk_element(*self.next_button)
 
-        self.set_element_text(*self.phone_numer, value=data['addr_phone'])
+    def fill_patient_phone_number(self):
+        self.set_element_text(*self.phone_numer, value=self.data['addr_phone'])
         self.clk_element(*self.next_button)
 
+    def fill_patient_relatives(self, number):
         relatives = []
-        for i in range(2):
+        for i in range(number):
             relationship_type = (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[1]//select[1]')
+            self.wait_visibility(*relationship_type)
             self.select_option_random(*relationship_type)
             selection = self.get_selected(*relationship_type)
             person_name = (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[2]//input[1]')
             random_name = PatientData.get_value(value='name')
+            self.wait_visibility(*person_name)
             self.set_element_text(*person_name, value=random_name)
             relatives.append((selection, random_name))
-            self.clk_element(*self.add_relationship)
+            if i < (number - 1):
+                self.clk_element(*self.add_relationship)
         self.clk_element(*self.next_button)

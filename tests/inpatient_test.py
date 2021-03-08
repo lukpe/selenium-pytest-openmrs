@@ -22,4 +22,9 @@ class TestInpatientWard(TestBase):
 
         log.info('Register a patient')
         home_page.register_patient()
-        register_page.fill_patient_data()
+        register_page.fill_patient_name()
+        register_page.fill_patient_gender('Female')
+        register_page.fill_patient_birthdate()
+        register_page.fill_patient_address()
+        register_page.fill_patient_phone_number()
+        register_page.fill_patient_relatives(3)
