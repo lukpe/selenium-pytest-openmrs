@@ -18,10 +18,10 @@ class TestBase:
         if logger.hasHandlers():
             logger.handlers.clear()
         # file handler object
-        d = datetime.datetime.now()
-        date = str(d.year) + str(d.month) + str(d.day)
-        file_handler = logging.FileHandler(filename=f'{ROOT_DIR}\\..\\logs\\logfile_{date}.log', mode='a',
-                                           encoding='UTF-8')
+        date_now = datetime.datetime.now()
+        date = str(date_now.year) + str(date_now.month) + str(date_now.day)
+        file_handler = logging.FileHandler(filename=f'{ROOT_DIR}\\..\\output\\logfile_{date}.log',
+                                           mode='a', encoding='UTF-8')
         file_format = logging.Formatter('%(asctime)s %(name)-30s %(levelname)-10s %(message)s')
         file_handler.setFormatter(file_format)
         logger.addHandler(file_handler)
@@ -36,3 +36,4 @@ class TestBase:
             return config.get(group).get(value)
         except IOError:
             print(f'{filename} not found!')
+        return None

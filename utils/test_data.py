@@ -1,4 +1,8 @@
+import os
+
 from faker import Faker
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class PatientData:
@@ -16,6 +20,7 @@ class PatientData:
             'addr_country': faker.country(),
             'addr_postal': faker.postcode(),
             'addr_phone': faker.msisdn(),
+            'relatives': None
         }
         return data
 
@@ -23,4 +28,5 @@ class PatientData:
     def get_value(value):
         faker = Faker()
         method = getattr(faker, value)
-        return method()
+        data = method()
+        return data
