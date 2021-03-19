@@ -1,6 +1,6 @@
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
-from pages.resgister_patient_page import RegisterPatientPage
+from pages.register_patient_page import RegisterPatientPage
 from utils.test_base import TestBase
 
 
