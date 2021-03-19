@@ -1,5 +1,6 @@
 [test]
-url = 'http://localhost:8080/openmrs/'
+# url = 'http://localhost:8080/openmrs/'
+url = 'https://demo.openmrs.org/openmrs/login.htm'
 
 [driver]
 default = 'chrome'
