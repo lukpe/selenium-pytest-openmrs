@@ -37,7 +37,9 @@ class RegisterPatientPage(Page):
     def fill_patient_birthdate(self):
         birth_date = self.data['birth_date']
         self.set_element_text(*self.birth_day, value=birth_date.day)
-        self.select_option_by_text(*self.birth_month, option=calendar.month_name[birth_date.month])
+        self.select_option_by_text(
+            *self.birth_month, option=calendar.month_name[birth_date.month]
+        )
         self.set_element_text(*self.birth_year, value=birth_date.year)
         self.clk_element(*self.next_button)
 
@@ -55,12 +57,17 @@ class RegisterPatientPage(Page):
     def fill_patient_relatives(self, number):
         relatives = []
         for i in range(number):
-            relationship_type = \
-                (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[1]//select[1]')
+            relationship_type = (
+                By.XPATH,
+                f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[1]//select[1]',
+            )
             self.wait_visibility(*relationship_type)
             self.select_option_random(*relationship_type)
             selection = self.get_selected(*relationship_type)
-            person_name = (By.XPATH, f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[2]//input[1]')
+            person_name = (
+                By.XPATH,
+                f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[2]//input[1]',
+            )
             random_name = PatientData.get_value(value='name')
             self.wait_visibility(*person_name)
             self.set_element_text(*person_name, value=random_name)

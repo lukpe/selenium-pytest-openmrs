@@ -5,7 +5,6 @@ from utils.test_base import TestBase
 
 
 class TestInpatientWard(TestBase):
-
     def test_login(self):
         log = self.get_logger()
         login_page = LoginPage(self.driver)
@@ -13,7 +12,10 @@ class TestInpatientWard(TestBase):
         log.info('Log In to the Inpatient Ward')
         login_page.log_in(user='Admin', password='Admin123', location='Inpatient Ward')
         assert 'Home' in home_page.get_title()
-        assert 'Logged in as Super User (admin) at Inpatient Ward.' in home_page.get_header()
+        assert (
+            'Logged in as Super User (admin) at Inpatient Ward.'
+            in home_page.get_header()
+        )
 
     def test_register_patient(self):
         log = self.get_logger()

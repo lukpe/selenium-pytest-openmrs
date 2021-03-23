@@ -6,7 +6,6 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class PatientData:
-
     @staticmethod
     def get_data():
         faker = Faker()
@@ -20,7 +19,7 @@ class PatientData:
             'addr_country': faker.country(),
             'addr_postal': faker.postcode(),
             'addr_phone': faker.msisdn(),
-            'relatives': None
+            'relatives': None,
         }
         return data
 
