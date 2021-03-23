@@ -18,7 +18,7 @@ class RegisterPatientPage(Page):
     city = (By.ID, 'cityVillage')
     country = (By.ID, 'country')
     postal_code = (By.ID, 'postalCode')
-    phone_numer = (By.NAME, 'phoneNumber')
+    phone_number = (By.NAME, 'phoneNumber')
     add_relationship = (By.CSS_SELECTOR, 'a[ng-click=\'addNewRelationship()\']')
 
     def __init__(self, driver):
@@ -49,7 +49,7 @@ class RegisterPatientPage(Page):
         self.clk_element(*self.next_button)
 
     def fill_patient_phone_number(self):
-        self.set_element_text(*self.phone_numer, value=self.data['addr_phone'])
+        self.set_element_text(*self.phone_number, value=self.data['addr_phone'])
         self.clk_element(*self.next_button)
 
     def fill_patient_relatives(self, number):
