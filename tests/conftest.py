@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from webdrivermanager import ChromeDriverManager, GeckoDriverManager
+from utils.excel_driver import ExcelDriver
 
 from utils.test_base import TestBase
 
@@ -13,6 +14,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='class')
 def setup(request):
+    # Setup driver
     driver = None
     browser = request.config.getoption('browser')
     if browser == 'chrome':
@@ -28,5 +30,7 @@ def setup(request):
     wait = WebDriverWait(driver, TestBase.get_config('driver', 'wait'))
     request.cls.driver = driver
     request.cls.wait = wait
+    # Setup TestData.xlsx
+    ExcelDriver().set_workbook()
     yield
     driver.quit()
