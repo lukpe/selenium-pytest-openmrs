@@ -9,7 +9,7 @@ import toml
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-@pytest.mark.usefixtures('setup')
+@pytest.mark.usefixtures("setup")
 class TestBase:
     @staticmethod
     def get_logger():
@@ -21,12 +21,12 @@ class TestBase:
         date_now = datetime.datetime.now()
         date = str(date_now.year) + str(date_now.month) + str(date_now.day)
         file_handler = logging.FileHandler(
-            filename=f'{ROOT_DIR}\\..\\output\\logfile_{date}.log',
-            mode='a',
-            encoding='UTF-8',
+            filename=f"{ROOT_DIR}\\..\\output\\logfile_{date}.log",
+            mode="a",
+            encoding="UTF-8",
         )
         file_format = logging.Formatter(
-            '%(asctime)s %(name)-30s %(levelname)-10s %(message)s'
+            "%(asctime)s %(name)-30s %(levelname)-10s %(message)s"
         )
         file_handler.setFormatter(file_format)
         logger.addHandler(file_handler)
@@ -35,10 +35,10 @@ class TestBase:
 
     @staticmethod
     def get_config(group, value):
-        filename = 'test_variables.toml'
+        filename = "test_variables.toml"
         try:
-            config = toml.load(f'{ROOT_DIR}\\{filename}')
+            config = toml.load(f"{ROOT_DIR}\\{filename}")
             return config.get(group).get(value)
         except IOError:
-            print(f'{filename} not found!')
+            print(f"{filename} not found!")
         return None

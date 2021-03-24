@@ -4,11 +4,11 @@ from pages.base_page import Page
 
 
 class HomePage(Page):
-    header = (By.TAG_NAME, 'H4')
+    header = (By.TAG_NAME, "H4")
     register = (
         By.ID,
-        'referenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication'
-        '-registrationapp-registerPatient-homepageLink-extension',
+        "referenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication"
+        "-registrationapp-registerPatient-homepageLink-extension",
     )
 
     def __init__(self, driver):

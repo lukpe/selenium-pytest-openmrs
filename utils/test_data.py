@@ -12,15 +12,15 @@ class PatientData:
         faker = Faker()
 
         data = {
-            'first_name': faker.first_name_female(),
-            'last_name': faker.last_name_female(),
-            'birth_date': faker.date_of_birth(),
-            'addr_street': faker.street_address(),
-            'addr_city': faker.city(),
-            'addr_country': faker.country(),
-            'addr_postal': faker.postcode(),
-            'addr_phone': faker.msisdn(),
-            'relatives': None,
+            "first_name": faker.first_name_female(),
+            "last_name": faker.last_name_female(),
+            "birth_date": faker.date_of_birth(),
+            "addr_street": faker.street_address(),
+            "addr_city": faker.city(),
+            "addr_country": faker.country(),
+            "addr_postal": faker.postcode(),
+            "addr_phone": faker.msisdn(),
+            "relatives": None,
         }
         for item in data.items():
             excel = ExcelDriver()
