@@ -1,6 +1,7 @@
 import os
 
 from faker import Faker
+from utils.excel_driver import ExcelDriver
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,11 +22,14 @@ class PatientData:
             'addr_phone': faker.msisdn(),
             'relatives': None,
         }
+        for item in data.items():
+            excel = ExcelDriver()
+            excel.set_value(item[0], item[1])
         return data
 
     @staticmethod
-    def get_value(value):
+    def get_value(name):
         faker = Faker()
-        method = getattr(faker, value)
-        data = method()
-        return data
+        method = getattr(faker, name)
+        value = method()
+        return value

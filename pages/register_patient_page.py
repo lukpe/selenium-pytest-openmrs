@@ -68,7 +68,7 @@ class RegisterPatientPage(Page):
                 By.XPATH,
                 f'//div[@class=\'ng-scope\']//div[{i + 1}]//p[2]//input[1]',
             )
-            random_name = PatientData.get_value(value='name')
+            random_name = PatientData.get_value(name='name')
             self.wait_visibility(*person_name)
             self.set_element_text(*person_name, value=random_name)
             relatives.append((selection, random_name))
