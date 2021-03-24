@@ -20,7 +20,6 @@ class PatientData:
             "addr_country": faker.country(),
             "addr_postal": faker.postcode(),
             "addr_phone": faker.msisdn(),
-            "relatives": None,
         }
         for item in data.items():
             excel = ExcelDriver()
@@ -28,8 +27,9 @@ class PatientData:
         return data
 
     @staticmethod
-    def get_value(name):
+    def get_relative_name(n, relationship_type):
         faker = Faker()
-        method = getattr(faker, name)
-        value = method()
-        return value
+        name = faker.name()
+        excel = ExcelDriver()
+        excel.set_value(f"relative_{n}", f"{relationship_type}: {name}")
+        return name

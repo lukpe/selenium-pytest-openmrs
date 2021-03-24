@@ -62,13 +62,13 @@ class RegisterPatientPage(Page):
                 f"//div[@class='ng-scope']//div[{i + 1}]//p[1]//select[1]",
             )
             self.wait_visibility(*relationship_type)
-            self.select_option_random(*relationship_type)
+            relation = self.select_option_random(*relationship_type)
             selection = self.get_selected(*relationship_type)
             person_name = (
                 By.XPATH,
                 f"//div[@class='ng-scope']//div[{i + 1}]//p[2]//input[1]",
             )
-            random_name = PatientData.get_value(name="name")
+            random_name = PatientData.get_relative_name(i + 1, relation)
             self.wait_visibility(*person_name)
             self.set_element_text(*person_name, value=random_name)
             relatives.append((selection, random_name))

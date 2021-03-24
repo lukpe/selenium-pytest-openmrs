@@ -39,6 +39,7 @@ class Page:
         options = select.options
         option = random.choice(options)
         select.select_by_visible_text(option.text)
+        return option.text
 
     def get_selected(self, *loc):
         select = Select(self.driver.find_element(*loc))
