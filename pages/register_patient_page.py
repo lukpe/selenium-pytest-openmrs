@@ -1,4 +1,5 @@
 import calendar
+import random
 
 from selenium.webdriver.common.by import By
 
@@ -56,6 +57,8 @@ class RegisterPatientPage(Page):
 
     def fill_patient_relatives(self, number):
         relatives = []
+        if number == "random":
+            number = random.randint(2, 5)
         for i in range(number):
             relationship_type = (
                 By.XPATH,

@@ -29,4 +29,4 @@ class TestInpatientWard(TestBase):
         register_page.fill_patient_birthdate()
         register_page.fill_patient_address()
         register_page.fill_patient_phone_number()
-        register_page.fill_patient_relatives(3)
+        register_page.fill_patient_relatives("random")
