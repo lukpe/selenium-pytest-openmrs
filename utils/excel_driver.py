@@ -31,6 +31,7 @@ class ExcelDriver:
         col_num = self.get_column(col_name)
         wb = load_workbook(self.file_name)
         ws = wb[SHEET_NAME]
+        cell_value = "EMPTY" if cell_value == "" else cell_value
         ws.cell(row=ws.max_row, column=col_num).value = cell_value
         wb.save(self.file_name)
 
