@@ -19,12 +19,11 @@ def get_url():
         status_code = urllib.request.urlopen(url_local).getcode()
         if status_code == 200:
             return url_local
-        else:
-            return url
     except urllib.error.HTTPError:
-        return url
+        pass
     except urllib.error.URLError:
-        return url
+        pass
+    return url
 
 
 @pytest.fixture(scope="function")
