@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import Page
+from utils.excel_driver import ExcelDriver
 
 
 class LoginPage(Page):
@@ -14,9 +15,15 @@ class LoginPage(Page):
         Page.__init__(self, driver)
 
     def log_in(self, **kwargs):
+        excel = ExcelDriver()
+
         self.set_element_text(*self.username, value=kwargs["user"])
         self.set_element_text(*self.password, value=kwargs["password"])
         location_element = (By.ID, kwargs["location"])
+
+        for key, value in kwargs.items():
+            excel.set_value(key, value)
+
         self.clk_element(*location_element)
         self.clk_element(*self.loginButton)
 
