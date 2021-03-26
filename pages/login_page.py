@@ -7,6 +7,7 @@ class LoginPage(Page):
     username = (By.ID, "username")
     password = (By.ID, "password")
     loginButton = (By.ID, "loginButton")
+    error_message = (By.ID, "error-message")
 
     def __init__(self, driver):
         Page.__init__(self, driver)
@@ -17,3 +18,6 @@ class LoginPage(Page):
         location_element = (By.ID, kwargs["location"])
         self.clk_element(*location_element)
         self.clk_element(*self.loginButton)
+
+    def get_error_messsage(self):
+        return self.get_text(*self.error_message)

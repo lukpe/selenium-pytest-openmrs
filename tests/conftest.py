@@ -23,9 +23,11 @@ def get_url():
             return url
     except urllib.error.HTTPError:
         return url
+    except urllib.error.URLError:
+        return url
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def setup(request):
     # Setup driver
     driver = None
