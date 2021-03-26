@@ -18,15 +18,20 @@ class TestLoggingIn(TestBase):
         log = self.get_logger()
         login_page = LoginPage(self.driver)
         home_page = HomePage(self.driver)
-        log.info("Log In to the Inpatient Ward: %s", f"{user_login}/{user_password}")
+
+        rand_location = login_page.draw_session_location()
+        log.info(
+            "Log In: %s",
+            f"{user_login}/{user_password}/{rand_location}",
+        )
         login_page.log_in(
-            user=user_login, password=user_password, location="Inpatient Ward"
+            user=user_login, password=user_password, location=rand_location
         )
         if is_correct:
             log.info("Expect user to log in")
             assert "Home" in home_page.get_title()
             assert (
-                "Logged in as Super User (admin) at Inpatient Ward."
+                f"Logged in as Super User (admin) at {rand_location}."
                 in home_page.get_header()
             )
         elif not is_correct:
