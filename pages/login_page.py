@@ -8,6 +8,7 @@ class LoginPage(Page):
     password = (By.ID, "password")
     loginButton = (By.ID, "loginButton")
     error_message = (By.ID, "error-message")
+    session_locations = (By.XPATH, "//ul[@id='sessionLocation']/li")
 
     def __init__(self, driver):
         Page.__init__(self, driver)
@@ -21,3 +22,6 @@ class LoginPage(Page):
 
     def get_error_messsage(self):
         return self.get_text(*self.error_message)
+
+    def draw_session_location(self):
+        return self.select_element_random(*self.session_locations)
