@@ -22,7 +22,7 @@ class TestLoggingIn(TestBase):
         rand_location = login_page.draw_session_location()
         log.info(
             "Log In: %s",
-            f"{user_login}/{user_password}/{rand_location}",
+            f"Username: {user_login} | Password: {user_password} | Location: {rand_location}",
         )
         login_page.log_in(
             user=user_login, password=user_password, location=rand_location
