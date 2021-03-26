@@ -17,13 +17,15 @@ class ExcelDriver:
             wb = Workbook()
             ws = wb.worksheets[0]
             ws.title = SHEET_NAME
-            ws.cell(row=ws.max_row + 1, column=1, value="END")
             wb.save(self.file_name)
-        else:
-            wb = load_workbook(self.file_name)
-            ws = wb[SHEET_NAME]
+        self.add_row()
+
+    def add_row(self):
+        wb = load_workbook(self.file_name)
+        ws = wb[SHEET_NAME]
+        if ws.cell(row=ws.max_row, column=1).value != "END":
             ws.cell(row=ws.max_row + 1, column=1, value="END")
-            wb.save(self.file_name)
+        wb.save(self.file_name)
 
     def set_value(self, col_name, cell_value):
         col_num = self.get_column(col_name)
