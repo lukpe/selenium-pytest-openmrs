@@ -1,4 +1,5 @@
-import urllib.request, urllib.error
+import urllib.request
+import urllib.error
 import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
