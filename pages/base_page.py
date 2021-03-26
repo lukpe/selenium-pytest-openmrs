@@ -41,6 +41,12 @@ class Page:
         select.select_by_visible_text(option.text)
         return option.text
 
+    def select_element_random(self, *loc):
+        elements = self.get_elements(*loc)
+        element = random.choice(elements)
+        element.click()
+        return element.text
+
     def get_selected(self, *loc):
         select = Select(self.driver.find_element(*loc))
         option = select.first_selected_option
