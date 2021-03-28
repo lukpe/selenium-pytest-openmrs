@@ -14,6 +14,7 @@ class PatientData:
         data = {
             "first_name": faker.first_name_female(),
             "last_name": faker.last_name_female(),
+            "gender": "Female",
             "birth_date": faker.date_of_birth(),
             "addr_street": faker.street_address(),
             "addr_city": faker.city(),
