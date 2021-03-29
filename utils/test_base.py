@@ -1,10 +1,14 @@
-import datetime
+import time
 import inspect
 import logging
 import os
 
+import urllib.request
+import urllib.error
+
 import pytest
 import toml
+
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,8 +22,7 @@ class TestBase:
         if logger.hasHandlers():
             logger.handlers.clear()
         # file handler object
-        date_now = datetime.datetime.now()
-        date = str(date_now.year) + str(date_now.month) + str(date_now.day)
+        date = time.strftime("%y%m%d")
         file_handler = logging.FileHandler(
             filename=f"{ROOT_DIR}\\..\\output\\logfile_{date}.log",
             mode="a",
@@ -42,3 +45,17 @@ class TestBase:
         except IOError:
             print(f"{filename} not found!")
         return None
+
+    @staticmethod
+    def get_url():
+        url_local = TestBase.get_config("test", "url_local")
+        url = TestBase.get_config("test", "url")
+        try:
+            status_code = urllib.request.urlopen(url_local).getcode()
+            if status_code == 200:
+                return url_local
+        except urllib.error.HTTPError:
+            pass
+        except urllib.error.URLError:
+            pass
+        return url

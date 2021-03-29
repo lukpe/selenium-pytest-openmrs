@@ -1,5 +1,5 @@
 import os
-import datetime
+import time
 from openpyxl import Workbook, load_workbook
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -8,9 +8,8 @@ SHEET_NAME = "Test Data"
 
 class ExcelDriver:
     def __init__(self):
-        date_now = datetime.datetime.now()
-        date = str(date_now.year) + str(date_now.month) + str(date_now.day)
-        self.file_name = f"{ROOT_DIR}\\..\\output\\TestData_{date}.xlsx"
+        date = time.strftime("%y%m%d")
+        self.file_name = f"{ROOT_DIR}\\..\\output\\testdata_{date}.xlsx"
 
     def set_workbook(self):
         if not os.path.isfile(self.file_name):

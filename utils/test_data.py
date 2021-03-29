@@ -1,9 +1,5 @@
-import os
-
 from faker import Faker
 from utils.excel_driver import ExcelDriver
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class PatientData:
